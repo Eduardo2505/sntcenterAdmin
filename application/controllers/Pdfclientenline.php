@@ -81,12 +81,22 @@ class Pdfclientenline extends CI_Controller {
          $informacionBasica=$this->informacionBasica($rowv);
          $lesiones=$this->historiaLesiones($rowv);
          $ExperienciaEjercicio=$this->experienciaPracEjercicio($rowv);
-          $facilidadObjetivos=$this->facilidadObjetivos($rowv);
+         $facilidadObjetivos=$this->facilidadObjetivos($rowv);
+
+         $experienciaFarma=$this->experienciaFarma($rowv);
+
+         $caracteristicasExperiencia=$this->caracteristicasExperiencia($rowv);
+         $informacionCorporal=$this->informacionCorporal($rowv);
+         $estiloAlimentacion=$this->estiloAlimentacion($rowv);
+         $estilovida=$this->estilovida($rowv);
+
 
 
          $html =  $css.$general.
                   $informacionBasica.$lesiones.
-                  $ExperienciaEjercicio.$facilidadObjetivos;
+                  $ExperienciaEjercicio.$facilidadObjetivos.
+                  $experienciaFarma.$caracteristicasExperiencia.
+                  $informacionCorporal.$estiloAlimentacion.$estilovida;
 
 
        
@@ -103,6 +113,655 @@ class Pdfclientenline extends CI_Controller {
 
         $nombre_archivo = utf8_decode('Caratula_de_Cita.pdf');
         $pdf->Output($nombre_archivo, 'I');
+    }
+function estilovida($rowv){
+
+            $cadenapaso9=$rowv->paso9;
+                if(!empty($cadenapaso9)){
+                    $datos1=file_get_contents($this->urlc.$cadenapaso9);
+                    $listav = explode("|",$datos1);
+                    $padDormido=$listav[1];
+                    $padRecostado=$listav[2];
+                    $padMuysedentario=$listav[3];
+                    $padsedentario=$listav[4];
+                    $padmuyligeramenteactivo=$listav[5];
+                    $padligeramenteactivo=$listav[6];
+                    $padmoderadamenteactivo=$listav[7];
+                    $padactivo=$listav[8];
+                    $padmuyactivo=$listav[9];
+                    $padExtemadamenteactivo=$listav[10];
+                    $padDormidodes=$listav[11];
+                    $padRecostadodes=$listav[12];
+                    $padMuysedentariodes=$listav[13];
+                    $padsedentariodes=$listav[14];
+                    $padmuyligeramenteactivodes=$listav[15];
+                    $padligeramenteactivodes=$listav[16];
+                    $padmoderadamenteactivodes=$listav[17];
+                    $padactivodes=$listav[18];
+                    $padmuyactivodes=$listav[19];
+                    $padExtemadamenteactivodes=$listav[20];
+                    $pEVidaTipo=$listav[21];
+                    $pEVidaTipo2=$listav[22];
+                    $numActividad=$listav[23];
+
+                  $html='<h3>Estilo de vida actual.  </h3><br><br><table>
+                       <tr>
+                            <td colspan="2" style="text-align:center;border: 1px solid #ddd;">
+                            Patrón de actividades diarias (Días de entrenamiento)</td>
+                   
+                       </tr>
+                       <tr>
+                           <th style="text-align:center;border: 1px solid #ddd">Tipo de actividad</th>
+                           
+                           <th style="text-align:center;border: 1px solid #ddd;">Horas diarias en esas actividades</th>
+                          
+                          
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Dormido</td>
+                           
+                            <td style="border: 1px solid #ddd">'.$padDormido.'</td>
+                    
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Recostado</td>
+                            <td style="border: 1px solid #ddd">'.$padRecostado.'</td>
+                    
+                       </tr>
+                         <tr>
+                            <td style="border: 1px solid #ddd">Muy sedentario</td>
+                            <td style="border: 1px solid #ddd">'.$padMuysedentario.'</td>
+                    
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Sedentario </td>
+                            <td style="border: 1px solid #ddd">'.$padsedentario.'</td>
+                    
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Muy ligeramente activo</td>
+                            <td style="border: 1px solid #ddd">'.$padmuyligeramenteactivo.'</td>
+                    
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Ligeramente activo</td>
+                            <td style="border: 1px solid #ddd">'.$padligeramenteactivo.'</td>
+                    
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Moderadamente activo</td>
+                            <td style="border: 1px solid #ddd">'.$padmoderadamenteactivo.'</td>
+                    
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Activo</td>
+                            <td style="border: 1px solid #ddd">'.$padactivo.'</td>
+                    
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Muy activo</td>
+                            <td style="border: 1px solid #ddd">'.$padmuyactivo.'</td>
+                    
+                       </tr>
+                       <tr>
+                            <td style="border: 1px solid #ddd">Extremadamente activo</td>
+                            <td style="border: 1px solid #ddd">'.$padExtemadamenteactivo.'</td>
+                    
+                       </tr>
+                       <tr>
+                            <td colspan="2" style="text-align:center;border: 1px solid #ddd;">
+                           Patrón de actividades diarias (Días de descanso)</td>
+                   
+                       </tr>
+
+                        <tr>
+                            <td style="border: 1px solid #ddd">Dormido</td>
+                           
+                            <td style="border: 1px solid #ddd">'.$padDormidodes.'</td>
+                    
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Recostado</td>
+                            <td style="border: 1px solid #ddd">'.$padRecostadodes.'</td>
+                    
+                       </tr>
+                         <tr>
+                            <td style="border: 1px solid #ddd">Muy sedentario</td>
+                            <td style="border: 1px solid #ddd">'.$padMuysedentariodes.'</td>
+                    
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Sedentario </td>
+                            <td style="border: 1px solid #ddd">'.$padsedentariodes.'</td>
+                    
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Muy ligeramente activo</td>
+                            <td style="border: 1px solid #ddd">'.$padmuyligeramenteactivodes.'</td>
+                    
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Ligeramente activo</td>
+                            <td style="border: 1px solid #ddd">'.$padligeramenteactivodes.'</td>
+                    
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Moderadamente activo</td>
+                            <td style="border: 1px solid #ddd">'.$padmoderadamenteactivodes.'</td>
+                    
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Activo</td>
+                            <td style="border: 1px solid #ddd">'.$padactivodes.'</td>
+                    
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Muy activo</td>
+                            <td style="border: 1px solid #ddd">'.$padmuyactivodes.'</td>
+                    
+                       </tr>
+                       <tr>
+                            <td style="border: 1px solid #ddd">Extremadamente activo</td>
+                            <td style="border: 1px solid #ddd">'.$padExtemadamenteactivodes.'</td>
+                    
+                       </tr>
+
+                       </table>
+                    <h3>Patrón de Estilo de vida</h3><br><br><table>
+                       <tr>
+                            <td colspan="2" style="text-align:center;border: 1px solid #ddd;">
+                            Patrón de Estilo de vida</td>
+                   
+                       </tr>
+                       <tr>
+                           <th style="text-align:center;border: 1px solid #ddd">Tipo de actividad diaria</th>
+                           <th style="text-align:center;border: 1px solid #ddd;">Horario</th>
+                                            
+                       </tr>
+                        <tr>
+                         
+                            <td style="border: 1px solid #ddd">'.$pEVidaTipo.'</td>
+                            <td style="border: 1px solid #ddd">'.$pEVidaTipo2.'</td>
+                       </tr>
+                       
+                       ';
+
+
+                    $activiadees= explode("&",$datos1);
+                    $verSuplem1 = count($activiadees);
+                    if($verSuplem1!=1){
+                        
+                        $verSuplemen1=$activiadees[1];
+                        $cantidadSuplementosExtra1 = explode("-",$verSuplemen1);
+                        $resultado1 = count($cantidadSuplementosExtra1);                
+                        $numActividad=$resultado1;
+                        for($i=0;$i<$resultado1;$i++){
+
+                            $s1 = explode("_",$cantidadSuplementosExtra1[$i]);
+
+                       $html.='<tr>
+                         
+                            <td style="border: 1px solid #ddd">'.$s1[0].'</td>
+                            <td style="border: 1px solid #ddd">'.$s1[1].'</td>
+                          </tr>';
+
+
+
+                            
+
+
+                          
+
+                        }
+                        
+                    }
+                    
+
+
+                }
+
+                return $html.'</table>';
+
+
+
+        }
+    function estiloAlimentacion($rowv){
+
+        $cadenapaso8=$rowv->paso8;
+            if(!empty($cadenapaso8)){
+                $datos1=file_get_contents($this->urlc.$cadenapaso8);
+                $listav = explode("|",$datos1);
+                
+                $patronalic1h=  $listav[1];
+                $patronalic1l=  $listav[2];
+                $patronalic1d=  $listav[3];
+                $patronalic2h=  $listav[4];
+                $patronalic2l=  $listav[5];
+                $patronalic2d=  $listav[6];
+                $patronalic3h=  $listav[7];
+                $patronalic3l=  $listav[8];
+                $patronalic3d=  $listav[9];
+                $patronalic4h=  $listav[10];
+                $patronalic4l=  $listav[11];
+                $patronalic4d=  $listav[12];
+                $patronalic5h=  $listav[13];
+                $patronalic5l=  $listav[14];
+                $patronalic5d=  $listav[15];
+                $patronalic6h=  $listav[16];
+                $patronalic6l=  $listav[17];
+                $patronalic6d=  $listav[18];
+
+                $recordatorioAlimentos24hras1h= $listav[19];
+                $ecordatorioAlimentos24hras1d=  $listav[20];
+                $ecordatorioAlimentos24hras1q=  $listav[21];
+                $ecordatorioAlimentos24hras1c=  $listav[22];
+
+                $recordatorioAlimentos24hras2h= $listav[23];
+                $ecordatorioAlimentos24hras2d=  $listav[24];
+                $ecordatorioAlimentos24hras2q=  $listav[25];
+                $ecordatorioAlimentos24hras2c=  $listav[26];
+
+                $recordatorioAlimentos24hras3h= $listav[27];
+                $ecordatorioAlimentos24hras3d=  $listav[28];
+                $ecordatorioAlimentos24hras3q=  $listav[29];
+                $ecordatorioAlimentos24hras3c=  $listav[30];
+
+                $recordatorioAlimentos24hras4h= $listav[31];
+                $ecordatorioAlimentos24hras4d=  $listav[32];
+                $ecordatorioAlimentos24hras4q=  $listav[33];
+                $ecordatorioAlimentos24hras4c=  $listav[34];
+
+                $recordatorioAlimentos24hras5h= $listav[35];
+                $ecordatorioAlimentos24hras5d=  $listav[36];
+                $ecordatorioAlimentos24hras5q=  $listav[37];
+                $ecordatorioAlimentos24hras5c=  $listav[38];
+
+                $recordatorioAlimentos24hras6h= $listav[39];
+                $ecordatorioAlimentos24hras6d=  $listav[40];
+                $ecordatorioAlimentos24hras6q=  $listav[41];
+                $ecordatorioAlimentos24hras6c=  $listav[42];
+                  $html='<h3>Tipo y estilo de alimentación actual. </h3><br><br><table>
+                       <tr>
+                            <td colspan="4" style="text-align:center;border: 1px solid #ddd;">
+                            Patrón de alimentación</td>
+                   
+                       </tr>
+                       <tr>
+                           <th style="text-align:center;border: 1px solid #ddd">Tiempo de comida</th>
+                           <th style="text-align:center;border: 1px solid #ddd;">Horario (hrs.min)</th>
+                           <th style="text-align:center;border: 1px solid #ddd;">Ubicación (lugar)</th>
+                           <th style="text-align:center;border: 1px solid #ddd;">Duración (min)</th>
+                          
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">1° Comida</td>
+                            <td style="border: 1px solid #ddd">'.$patronalic1h.'</td>
+                            <td style="border: 1px solid #ddd">'.$patronalic1l.'</td>
+                            <td style="border: 1px solid #ddd">'.$patronalic1d.'</td>
+                       </tr>
+                       <tr>
+                            <td style="border: 1px solid #ddd">2° Comida</td>
+                            <td style="border: 1px solid #ddd">'.$patronalic2h.'</td>
+                            <td style="border: 1px solid #ddd">'.$patronalic2l.'</td>
+                            <td style="border: 1px solid #ddd">'.$patronalic2d.'</td>
+                       </tr>
+                       <tr>
+                            <td style="border: 1px solid #ddd">3° Comida</td>
+                           <td style="border: 1px solid #ddd">'.$patronalic3h.'</td>
+                            <td style="border: 1px solid #ddd">'.$patronalic3l.'</td>
+                            <td style="border: 1px solid #ddd">'.$patronalic3d.'</td>
+                       </tr>
+                       <tr>
+                            <td style="border: 1px solid #ddd">4° Comida</td>
+                           <td style="border: 1px solid #ddd">'.$patronalic4h.'</td>
+                            <td style="border: 1px solid #ddd">'.$patronalic4l.'</td>
+                            <td style="border: 1px solid #ddd">'.$patronalic4d.'</td>
+                       </tr>
+                       <tr>
+                            <td style="border: 1px solid #ddd">5° Comida</td>
+                           <td style="border: 1px solid #ddd">'.$patronalic5h.'</td>
+                            <td style="border: 1px solid #ddd">'.$patronalic5l.'</td>
+                            <td style="border: 1px solid #ddd">'.$patronalic5d.'</td>
+                       </tr>
+                       <tr>
+                            <td style="border: 1px solid #ddd">6° Comida</td>
+                            <td style="border: 1px solid #ddd">'.$patronalic6h.'</td>
+                            <td style="border: 1px solid #ddd">'.$patronalic6l.'</td>
+                            <td style="border: 1px solid #ddd">'.$patronalic6d.'</td>
+                       </tr>
+                       </table><br><br><br><br><table>
+                       <tr>
+                            <td colspan="5" style="text-align:center;border: 1px solid #ddd;">
+                            Recordatorio de alimentos de 24 horas</td>
+                   
+                       </tr>
+                       <tr>
+                           <th style="text-align:center;border: 1px solid #ddd">Tiempo de comida</th>
+                           <th style="text-align:center;border: 1px solid #ddd;">¿A qué hora?</th>
+                           <th style="text-align:center;border: 1px solid #ddd;">¿En dónde?</th>
+                           <th style="text-align:center;border: 1px solid #ddd;">¿Qué comió? (tipo de alimento y bebida)</th>
+                          <th style="text-align:center;border: 1px solid #ddd;">¿Cuándo comió? (cantidades)</th>
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">1° Comida</td>
+                            <td style="border: 1px solid #ddd">'.$recordatorioAlimentos24hras1h.'</td>
+                            <td style="border: 1px solid #ddd">'.$ecordatorioAlimentos24hras1d.'</td>
+                            <td style="border: 1px solid #ddd">'.$ecordatorioAlimentos24hras1q.'</td>
+                             <td style="border: 1px solid #ddd">'.$ecordatorioAlimentos24hras1c.'</td>
+                       </tr>
+                       <tr>
+                            <td style="border: 1px solid #ddd">2° Comida</td>
+                             <td style="border: 1px solid #ddd">'.$recordatorioAlimentos24hras2h.'</td>
+                            <td style="border: 1px solid #ddd">'.$ecordatorioAlimentos24hras2d.'</td>
+                            <td style="border: 1px solid #ddd">'.$ecordatorioAlimentos24hras2q.'</td>
+                             <td style="border: 1px solid #ddd">'.$ecordatorioAlimentos24hras2c.'</td>
+                       </tr>
+                       <tr>
+                            <td style="border: 1px solid #ddd">3° Comida</td>
+                           <td style="border: 1px solid #ddd">'.$recordatorioAlimentos24hras3h.'</td>
+                            <td style="border: 1px solid #ddd">'.$ecordatorioAlimentos24hras3d.'</td>
+                            <td style="border: 1px solid #ddd">'.$ecordatorioAlimentos24hras3q.'</td>
+                             <td style="border: 1px solid #ddd">'.$ecordatorioAlimentos24hras3c.'</td>
+                       </tr>
+                       <tr>
+                            <td style="border: 1px solid #ddd">4° Comida</td>
+                          <td style="border: 1px solid #ddd">'.$recordatorioAlimentos24hras4h.'</td>
+                            <td style="border: 1px solid #ddd">'.$ecordatorioAlimentos24hras4d.'</td>
+                            <td style="border: 1px solid #ddd">'.$ecordatorioAlimentos24hras4q.'</td>
+                             <td style="border: 1px solid #ddd">'.$ecordatorioAlimentos24hras4c.'</td>
+                       </tr>
+                       <tr>
+                            <td style="border: 1px solid #ddd">5° Comida</td>
+                       <td style="border: 1px solid #ddd">'.$recordatorioAlimentos24hras5h.'</td>
+                            <td style="border: 1px solid #ddd">'.$ecordatorioAlimentos24hras5d.'</td>
+                            <td style="border: 1px solid #ddd">'.$ecordatorioAlimentos24hras5q.'</td>
+                             <td style="border: 1px solid #ddd">'.$ecordatorioAlimentos24hras5c.'</td>
+                       </tr>
+                       <tr>
+                            <td style="border: 1px solid #ddd">6° Comida</td>
+                            <td style="border: 1px solid #ddd">'.$recordatorioAlimentos24hras6h.'</td>
+                            <td style="border: 1px solid #ddd">'.$ecordatorioAlimentos24hras6d.'</td>
+                            <td style="border: 1px solid #ddd">'.$ecordatorioAlimentos24hras6q.'</td>
+                             <td style="border: 1px solid #ddd">'.$ecordatorioAlimentos24hras6c.'</td>
+                       </tr>
+                       </table>';
+            }
+
+            return $html;
+    }
+
+
+    function informacionCorporal($rowv){
+
+           $cadenapaso7=$rowv->paso7;
+            if(!empty($cadenapaso7)){
+                $datos1=file_get_contents($this->urlc.$cadenapaso7);
+                $listav = explode("|",$datos1);
+                
+                $dabasiPeso=    $listav[1];
+                $dabasiAltura=  $listav[2];
+                $datosAntroespgrasa=    $listav[3];
+                $datosAntroespgrasaporce=   $listav[4];
+                $datosAntroespmasakg=   $listav[5];
+                $datosAntroespmasaporcen=   $listav[6];
+                $datosAntroespmasapmuskg=   $listav[7];
+                $datosAntroespmasapmusporcentaje=   $listav[8];
+
+                 $html='<br><h3>Información de composición corporal</h3>
+                 <p style="text-align:center">Datos antropométricos básicos</p>
+                 <br><br>Peso total (kg.g): '.$dabasiPeso.'<br>
+
+                 <br>Estatura total (cm) : '.$dabasiAltura.'<br>
+
+                  <p style="text-align:center">Datos antropométricos especializados</p>
+                  <br>Grasa corporal (kg) : '.$datosAntroespgrasa.'<br>
+                  <br>Grasa corporal (%) : '.$datosAntroespgrasaporce.'<br>
+                  <br>Masa magra (kg) : '.$datosAntroespmasakg.'<br>
+                   <br>Masa magra (%) : '.$datosAntroespmasaporcen.'<br>
+                    <br>Masa muscular (kg) : '.$datosAntroespmasapmuskg.'<br>
+                    <br>Masa muscular (%) : '.$datosAntroespmasapmusporcentaje.'<br>';
+            }
+            return  $html;
+
+
+
+    }
+
+    function caracteristicasExperiencia($rowv){
+
+            $cadenapaso6=$rowv->paso6;
+            if(!empty($cadenapaso6)){
+                $datos1=file_get_contents($this->urlc.$cadenapaso6);
+                $listav = explode("|",$datos1);
+                
+                $cdipersoAli=   $listav[1];
+                $cdipersoAliporque= $listav[2];
+                $cdipersoANivel=    $listav[3];
+                $cdipersoANivelCambios= $listav[4];
+                $cdipersoAlergias=  $listav[5];
+                $cdipersoIntoleranciaalimen=    $listav[6];
+                $cdipersoAlinoconsumir= $listav[7];
+                $consumoSusAlcolTipo=   $listav[8];
+                $consumoSusAlcolcantidad=   $listav[9];
+                $consumoSusAlcolFrecuencia= $listav[10];
+                $consumoSusTabacoTipo=  $listav[11];
+                $consumoSusTabacocantidad=  $listav[12];
+                $consumoSusTabacoFrecuencia=    $listav[13];
+                $consumoSusCafeinaTipo= $listav[14];
+                $consumoSusCafeinacocantidad=   $listav[15];
+                $consumoSusCafeinaFrecuencia=   $listav[16];
+                $consumoSusOtrasTipo=   $listav[17];
+                $consumoSusOtrascocantidad= $listav[18];
+                $consumoSusOtrasFrecuencia= $listav[19];
+                $edpduraTiempo= $listav[20];
+                $edpcuantoTiempo=   $listav[21];
+                $edpcResulobtuvo=   $listav[22];
+                $edpcxqAbandono=    $listav[23];
+                $noedpduraTiempo=   $listav[24];
+                $noedpcuantoTiempo= $listav[25];
+                $noedpcResulobtuvo= $listav[26];
+                $noedpcxqAbandono=  $listav[27];
+                $siedpduraTiempo=   $listav[28];
+                $siedpcuantoTiempo= $listav[29];
+                $siedpcResulobtuvo= $listav[30];
+                $siedpcxqAbandono=  $listav[31];
+             
+                 $html='<h3>Características y Experiencia dietética.</h3>
+                 <p style="text-align:center">Características dietéticas personales</p>
+                 <br><br>¿Alimentos evitados?: '.$cdipersoAli.'<br>
+
+                 <br>¿Por qué? : '.$cdipersoAliporque.'<br>
+                 <br>Nivel de apetito : '.$cdipersoANivel.'<br>
+                  <br>¿Cambios recientes en el apetito?: '.$cdipersoANivelCambios.'<br>
+                   <br>¿Tiene alguna alergia alimentaria?: '.$cdipersoAlergias.'<br>
+                    <br>¿Tiene alguna intolerancia alimentaria?:'.$cdipersoIntoleranciaalimen.'<br>
+                    <br>¿Qué alimentos no puede conseguir fácilmente?:'.$cdipersoAlinoconsumir.'<br><br>
+
+                 <table>
+                       <tr>
+                            <td colspan="4" style="text-align:center;border: 1px solid #ddd;">
+                            Consumo de sustancias bioactivas</td>
+                   
+                       </tr>
+                       <tr>
+                           <th style="text-align:center;border: 1px solid #ddd">Categoría</th>
+                           <th style="text-align:center;border: 1px solid #ddd;">Tipo</th>
+                           <th style="text-align:center;border: 1px solid #ddd;">Cantidad</th>
+                           <th style="text-align:center;border: 1px solid #ddd;">Frecuencia</th>
+                          
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Alcohol</td>
+                            <td style="border: 1px solid #ddd">'.$consumoSusAlcolTipo.'</td>
+                            <td style="border: 1px solid #ddd">'.$consumoSusAlcolcantidad.'</td>
+                            <td style="border: 1px solid #ddd">'.$consumoSusAlcolFrecuencia.'</td>
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Tabaco</td>
+                            <td style="border: 1px solid #ddd">'.$consumoSusTabacoTipo.'</td>
+                            <td style="border: 1px solid #ddd">'.$consumoSusTabacocantidad.'</td>
+                            <td style="border: 1px solid #ddd">'.$consumoSusTabacoFrecuencia.'</td>
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Cafeína</td>
+                            <td style="border: 1px solid #ddd">'.$consumoSusCafeinaTipo.'</td>
+                            <td style="border: 1px solid #ddd">'.$consumoSusCafeinacocantidad.'</td>
+                            <td style="border: 1px solid #ddd">'.$consumoSusCafeinaFrecuencia.'</td>
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Otras drogas</td>
+                            <td style="border: 1px solid #ddd">'.$consumoSusOtrasTipo.'</td>
+                            <td style="border: 1px solid #ddd">'.$consumoSusOtrascocantidad.'</td>
+                            <td style="border: 1px solid #ddd">'.$consumoSusOtrasFrecuencia.'</td>
+                       </tr>
+                      </table><br>
+
+
+                      <table>
+                       <tr>
+                            <td colspan="5" style="text-align:center;border: 1px solid #ddd;">
+                            Experiencia dietética previa</td>
+                   
+                       </tr>
+                       <tr>
+                           <th style="text-align:center;border: 1px solid #ddd">Tipo de dieta</th>
+                           <th style="text-align:center;border: 1px solid #ddd;">¿Durante cuánto tiempo?</th>
+                           <th style="text-align:center;border: 1px solid #ddd;">¿Hace cuánto tiempo?</th>
+                           <th style="text-align:center;border: 1px solid #ddd;">¿Qué resultados obtuvo?</th>
+                           <th style="text-align:center;border: 1px solid #ddd;">¿Por qué abandono?</th>
+                          
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">¿Dietas auto-prescritas?</td>
+                            <td style="border: 1px solid #ddd">'.$edpduraTiempo.'</td>
+                            <td style="border: 1px solid #ddd">'.$edpcuantoTiempo.'</td>
+                            <td style="border: 1px solid #ddd">'.$edpcResulobtuvo.'</td>
+                            <td style="border: 1px solid #ddd">'.$edpcxqAbandono.'</td>
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Dietas con prescripción no profesional</td>
+                            <td style="border: 1px solid #ddd">'.$noedpduraTiempo.'</td>
+                            <td style="border: 1px solid #ddd">'.$noedpcuantoTiempo.'</td>
+                            <td style="border: 1px solid #ddd">'.$noedpcResulobtuvo.'</td>
+                            <td style="border: 1px solid #ddd">'.$noedpcxqAbandono.'</td>
+                       </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd">Dietas con prescripción profesional </td>
+                            <td style="border: 1px solid #ddd">'.$siedpduraTiempo.'</td>
+                            <td style="border: 1px solid #ddd">'.$siedpcuantoTiempo.'</td>
+                            <td style="border: 1px solid #ddd">'.$siedpcResulobtuvo.'</td>
+                            <td style="border: 1px solid #ddd">'.$siedpcxqAbandono.'</td>
+                       </tr>
+                      </table>
+
+                 ';
+            }
+            return $html;
+    }
+
+    function experienciaFarma($rowv){
+            $cadenapaso5=$rowv->paso5;
+            if(!empty($cadenapaso5)){
+                $datos1=file_get_contents($this->urlc.$cadenapaso5);
+                $listav = explode("|",$datos1);
+                
+                $usoFarma=$listav[1];
+                $vefarHacecuanto=$listav[2];
+                $vefarDuranteCuanto=$listav[3];
+                $vefarQuienlerecomendo=$listav[4];
+                $vefarQuelomotivo=$listav[5];
+                $vefarQuienloasesoro=$listav[6];
+                $vefarQuefuequelauso=$listav[7];
+                $vefarQuetipodefarmauso=$listav[8];
+                $vefarQueObjetivologrouso=$listav[9];
+                $vefarUsaActualmentefarma=$listav[10];
+                $vefarTienePensadousarfarma=$listav[11];
+                $vefarObjetivostieneeluso=$listav[12];
+                $supleNombre=$listav[13];
+                $supleCaracteristicas=$listav[14];
+                $supleMotivo=$listav[15];
+                $supleTiempo=$listav[16];
+                $supleCantidad=$listav[17];
+                $valorSuplemne=$listav[18];
+
+                $html='<h3>Experiencia en el uso de Fármacos y Suplementos</h3>
+                 <p style="text-align:center">Uso y experiencia con Farmacología deportiva</p>
+                 <br><br>¿Ha usado ayudas farmacológicas?:<br>'.$usoFarma.'<br>
+
+                 <br>¿Hace cuánto tiempo las uso?:<br>'.$vefarHacecuanto.'<br>
+                 <br>¿Durante cuánto tiempo las uso?:<br>'.$vefarDuranteCuanto.'<br>
+                 <br>¿Quién le recomendó usarlas?:<br>'.$vefarQuienlerecomendo.'<br>
+                 <br>¿Qué lo motivo a usarlas?:<br>'.$vefarQuelomotivo.'<br>
+                 <br>¿Quién le asesoro en su uso?:<br>'.$vefarQuienloasesoro.'<br>
+                 <br>¿Cómo fue que las uso?:<br>'.$vefarQuefuequelauso.'<br>
+                 <br>¿Qué tipo de fármacos uso?:<br>'.$vefarQuetipodefarmauso.'<br>
+
+                 <br>¿Qué objetivos logro con su uso?:<br>'.$vefarQueObjetivologrouso.'<br>
+                 <br>¿Usa actualmente farmacología?:<br>'.$vefarUsaActualmentefarma.'<br>
+                 <br>¿Tiene pensado usar farmacología? :<br>'.$vefarTienePensadousarfarma.'<br>
+                 <br>¿Qué objetivos tiene con su uso?:<br>'.$vefarObjetivostieneeluso.'<br>  
+           
+                  <table>
+                   <tr>
+                        <td colspan="5" style="text-align:center;border: 1px solid #ddd;">
+                        Experiencia y uso de Suplementos nutricionales</td>
+               
+                   </tr>
+                   <tr>
+                       <th style="text-align:center;border: 1px solid #ddd">Nombre</th>
+                       <th style="text-align:center;border: 1px solid #ddd;">Características</th>
+                       <th style="text-align:center;border: 1px solid #ddd;">Motivo de uso</th>
+                       <th style="text-align:center;border: 1px solid #ddd;">Tiempo de uso</th>
+                        <th style="text-align:center;border: 1px solid #ddd;">Cantidad usada</th>
+                   </tr>
+                    <tr>
+                        <td style="border: 1px solid #ddd">'.$supleNombre.'</td>
+                        <td style="border: 1px solid #ddd">'.$supleCaracteristicas.'</td>
+                        <td style="border: 1px solid #ddd">'.$supleMotivo.'</td>
+                        <td style="border: 1px solid #ddd">'.$supleTiempo.'</td>
+                        <td style="border: 1px solid #ddd">'.$supleCantidad.'</td>
+
+                      
+                   </tr>
+                   
+                   ';
+
+
+                $suplementos = explode("&",$datos1);
+                $verSuplem = count($suplementos);
+                if($verSuplem!=1){
+                    
+                    $verSuplemen=$suplementos[1];
+                    $cantidadSuplementosExtra = explode("-",$verSuplemen);
+                    $resultado = count($cantidadSuplementosExtra);
+                    $numSuplemento=$resultado;
+                    for($i=0;$i<$resultado;$i++){
+
+                        $s1 = explode("_",$cantidadSuplementosExtra[$i]);
+
+                        $html.= '
+
+                        <tr>
+                            <td style="border: 1px solid #ddd">'.$s1[0].'</td>
+                            <td style="border: 1px solid #ddd">'.$s1[1].'</td>
+                            <td style="border: 1px solid #ddd">'.$s1[2].'</td>
+                            <td style="border: 1px solid #ddd">'.$s1[3].'</td>
+                            <td style="border: 1px solid #ddd">'.$s1[4].'</td>
+                       </tr>';
+
+                      
+
+                    }
+
+                    
+                }
+
+               $html.='</table>';
+                
+
+            }
+            return $html;
+
     }
     function facilidadObjetivos($rowv){
 

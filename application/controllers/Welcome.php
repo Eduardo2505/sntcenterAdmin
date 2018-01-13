@@ -13,6 +13,13 @@ class Welcome extends CI_Controller {
         $this->load->helper('url');
         $this->load->library('session');
 
+        $datoiniciar = $this->session->userdata('nombre');
+        if (strlen($datoiniciar) != 0) {
+
+
+            redirect('', 'refresh');
+        }
+
        
     }
 
