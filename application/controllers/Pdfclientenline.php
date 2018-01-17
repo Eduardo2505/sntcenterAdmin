@@ -12,6 +12,13 @@ class Pdfclientenline extends CI_Controller {
         $this->load->model('cliente_models');
         $this->load->model('cuestionario_models');
         $this->load->helper('url');
+        $this->load->library('session');
+        $datoiniciar = $this->session->userdata('usuario');
+        if (strlen($datoiniciar) == 0) {
+
+
+            redirect('', 'refresh');
+        }
     }
 
     public function generar() {

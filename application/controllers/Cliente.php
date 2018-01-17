@@ -4,9 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Cliente extends CI_Controller {
 
-   private $limite = 10;
+ private $limite = 10;
 
-   function __construct() {
+ function __construct() {
 
     parent::__construct();
 
@@ -15,7 +15,19 @@ class Cliente extends CI_Controller {
     $this->load->model('cliente_models');
     $this->load->library('pagination');
 
+    $datoiniciar = $this->session->userdata('usuario');
+    if (strlen($datoiniciar) == 0) {
 
+
+        redirect('', 'refresh');
+    }
+
+
+}
+
+public function salir() {
+    $this->session->sess_destroy();
+    redirect('', 'refresh');
 }
 
 public function index() {
@@ -75,14 +87,14 @@ public function index() {
         
         $datam['cliente'] = "start active";
         $data['menu'] = $this->load->view('plantilla/menu', $datam, true);
-        $datab['usuario']="-";//Eliminar
+        $datab['usuario']= $this->session->userdata('usuario');
         $data['barra'] = $this->load->view('plantilla/barra', $datab, true);
         $this->load->view('cliente/lista', $data);
         
-      }
+    }
 
 
 
 
 
-  }
+}

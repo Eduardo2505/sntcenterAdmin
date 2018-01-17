@@ -63,11 +63,11 @@
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
 
-                    <input class="form-control form-control-solid placeholder-no-fix" value="demo@demo.com" type="email" autocomplete="off" placeholder="Correo eléctronico" name="email" required="" />
+                    <input class="form-control form-control-solid placeholder-no-fix"  type="email" autocomplete="off" placeholder="Correo eléctronico" name="email" required="" />
                 </div>
                 <div class="form-group">
 
-                    <input class="form-control form-control-solid placeholder-no-fix" value="demo123545" type="password" autocomplete="off" placeholder="Password" name="pass" required=""/>
+                    <input class="form-control form-control-solid placeholder-no-fix"  type="password" autocomplete="off" placeholder="Password" name="pass" required=""/>
                 </div>
                 <div class="form-actions">
                     <button type="submit" class="btn btn-success uppercase">ENTRAR</button>

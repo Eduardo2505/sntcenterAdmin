@@ -21,7 +21,7 @@
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                 <img alt="" class="img-circle" src="<?php echo site_url('') ?>metronic/admin/layout/img/avatar3_small.jpg"/>
                 <span class="username username-hide-on-mobile">
-                    Eduardo Padilla cruz </span>
+                    <?php echo $usuario; ?> </span>
 
                     <i class="fa fa-user"></i>
                 </a>
@@ -29,7 +29,7 @@
 
             </li>
             <li class="dropdown dropdown-quick-sidebar-toggler">
-                <a href="<?php echo site_url('') ?>demo/close" class="dropdown-toggle">
+                <a href="<?php echo site_url('') ?>cliente/salir" class="dropdown-toggle">
                     <i class="icon-logout"></i>
                 </a>
             </li>

@@ -13,11 +13,11 @@ class Welcome extends CI_Controller {
         $this->load->helper('url');
         $this->load->library('session');
 
-        $datoiniciar = $this->session->userdata('nombre');
+        $datoiniciar = $this->session->userdata('usuario');
         if (strlen($datoiniciar) != 0) {
 
 
-            redirect('', 'refresh');
+            redirect('cliente', 'refresh');
         }
 
        
@@ -28,10 +28,29 @@ class Welcome extends CI_Controller {
         $this->load->view('login', $data);
     }
 
+    
+
     public function login() {
+
+        $email=$this->input->post('email');
+        $password=$this->input->post('pass');
+        if($email==='gomezluisnutricion@hotmail.com'&&$password=='sntcenter25%'){
+
+          $newdata = array(
+                'idUsuario' => 1,
+                'usuario' => 'LUIS ALBERTO GÓMEZ MARTIN'
+                );
+
+            $this->session->set_userdata($newdata);
+             redirect('cliente', 'refresh');
+        }else{
+
+         $data['cadena'] ='error';// $navegador;
+         $this->load->view('login', $data);
+        }
        
 
-         redirect('cliente', 'refresh');
+        
 
     }
 
