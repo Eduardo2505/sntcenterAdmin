@@ -25,6 +25,11 @@ class Welcome extends CI_Controller {
 
     public function index() {
         $data['cadena'] = "";
+        $this->load->view('menu', $data);
+    }
+
+     public function loginme() {
+        $data['cadena'] = "";
         $this->load->view('login', $data);
     }
 

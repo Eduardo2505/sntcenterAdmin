@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="utf-8"/>
-        <title>Admin Ave</title>
+        <title>SNT</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -27,7 +27,7 @@
         <link href="<?php echo site_url('') ?>metronic/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
         <link href="<?php echo site_url('') ?>metronic/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
         <!-- END THEME STYLES -->
-        <link rel="shortcut icon" href="<?php echo site_url('') ?>favicon.ico"/>
+        <link rel="shortcut icon" href="<?php echo site_url('') ?>favicon.png"/>
     </head>
     <!-- END HEAD -->
     <!-- BEGIN BODY -->
