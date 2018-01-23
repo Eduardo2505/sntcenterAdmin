@@ -59,6 +59,36 @@ class Welcome extends CI_Controller {
 
     }
 
+    public function suscripcion()
+    {
+        
+
+        
+        
+        $destinatario="eduardopadillacz@gmail.com";
+        $asunto="Suscripcion";
+        
+        
+        $html= ' Email de Susucripción : hola'; 
+
+        $cabeceras = 'From: suscripcion@sntcenter.com.mx' . "\r\n" .
+        'Reply-To: contacto@sntcenter.com.mx' . "\r\n" .
+        'Content-Type: text/html' . "\r\n" .
+        'X-Mailer: PHP/' . phpversion();
+
+
+
+        if (mail($this->destinatario, utf8_decode($asunto), $html, $cabeceras)) {
+            $datam['activar'] ='planes';
+            $data['menu'] = $this->load->view('plantilla/menu', $datam, true);
+            $data['mensaje']="Gracias por tu suscripción";
+            $this->load->view('msn',$data);
+        }else{
+            echo "Error al enviarse correo";
+        }
+
+    }
+
 
 
 }
