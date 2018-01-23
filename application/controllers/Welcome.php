@@ -78,11 +78,10 @@ class Welcome extends CI_Controller {
 
 
 
-        if (mail($this->destinatario, utf8_decode($asunto), $html, $cabeceras)) {
-            $datam['activar'] ='planes';
-            $data['menu'] = $this->load->view('plantilla/menu', $datam, true);
-            $data['mensaje']="Gracias por tu suscripción";
-            $this->load->view('msn',$data);
+        if (mail($destinatario, utf8_decode($asunto), $html, $cabeceras)) {
+           
+            echo "Gracias por tu suscripción";
+            
         }else{
             echo "Error al enviarse correo";
         }
