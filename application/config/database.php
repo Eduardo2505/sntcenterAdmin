@@ -8,7 +8,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => '35.226.65.43',
 	'username' => 'root',
 	'password' => 'seiter',
 	'database' => 'sntcenter_db',
