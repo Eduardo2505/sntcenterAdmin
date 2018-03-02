@@ -57,7 +57,7 @@ class Cliente_models extends CI_Model {
 
 function countCitas($idCliente) {
    $Query='SELECT 
-   C.*
+   c.*
    FROM
    consulta c
    INNER JOIN
@@ -68,7 +68,7 @@ function countCitas($idCliente) {
 
 function getCitas($id, $offset, $limin) {
     $Query='SELECT 
-    C.*
+    c.*
     FROM
     consulta c
     INNER JOIN
