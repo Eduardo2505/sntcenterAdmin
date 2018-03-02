@@ -63,6 +63,7 @@ public function insertarcitas() {
     $email = $row->email;
 
     $numeroConsultas=$this->cliente_models->countCitas($idCliente);
+    $url="";
     if($numeroConsultas==2){
         //se envia 10
         $codigo='GANE10';
