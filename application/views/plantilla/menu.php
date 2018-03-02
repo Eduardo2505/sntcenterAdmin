@@ -26,7 +26,7 @@
 
         <a href="<?php echo site_url('') ?>cliente">
           <i class="fa fa fa-child"></i>
-          <span class="title">cliente</span>
+          <span class="title">Clientes</span>
           <span class="selected"></span>
 
         </a>

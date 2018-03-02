@@ -120,6 +120,9 @@
                                                                 <a href="<?php echo site_url('') ?>pdfclientenline/generar?idCliente=<?php echo $rowx->idCliente; ?>" title="Ver Captura" target="_blank" class="btn input-circle btn-sm yellow-crusta">
                                                                     <i class="fa fa-file"></i>
                                                                 </a>
+                                                                 <a href="<?php echo site_url('') ?>cliente/citas?idcliente=<?php echo $rowx->idCliente; ?>" title="Ver Citas" class="btn input-circle btn-sm yellow-crusta">
+                                                                   Consultas
+                                                                </a>
 
 
                                                             </td>
