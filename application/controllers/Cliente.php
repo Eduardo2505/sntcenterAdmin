@@ -62,7 +62,7 @@ public function insertarcitas() {
     $nombre = $row->nombre;
     $email = $row->email;
 
-    $numeroConsultas=$this->cliente_models->countCitas($idCliente);
+    $numeroConsultas=$this->cliente_models->countCitasActivas($idCliente);
     $url="";
     if($numeroConsultas==2){
         //se envia 10

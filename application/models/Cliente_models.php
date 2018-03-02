@@ -143,5 +143,16 @@ function buscarplancontratado($idCliente) {
     }
 
 
+function countCitasActivas($idCliente) {
+   $Query='SELECT 
+   c.*
+   FROM
+   consulta c
+   INNER JOIN
+   plancontratado p ON c.idplancontratado = p.idplancontratado where c.estatus=1 and p.idCliente='.$idCliente;
+   $query = $this->db->query($Query);
+   return $query->num_rows();
+}
+
 
 }
