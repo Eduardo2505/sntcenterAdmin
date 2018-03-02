@@ -4,9 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Cliente extends CI_Controller {
 
- private $limite = 10;
+   private $limite = 10;
 
- function __construct() {
+   function __construct() {
 
     parent::__construct();
 
@@ -68,31 +68,48 @@ public function insertarcitas() {
         //se envia 10
         $codigo='GANE10';
         $url='https://sntcenter.com.mx/welcome/emialPromocion?email='.$email.'&nombre='.$nombre.'&codigo='.$codigo.'&descuento=10';
+
+        $urlfinal=$url.'&op=1&idcliente='.$idCliente;
+        redirect($urlfinal, 'refresh');
     }
     else if($numeroConsultas==5){
         //se envia 20
         $codigo='BAJE20';
         $url='https://sntcenter.com.mx/welcome/emialPromocion?email='.$email.'&nombre='.$nombre.'&codigo='.$codigo.'&descuento=20';
+
+        $urlfinal=$url.'&op=1&idcliente='.$idCliente;
+        redirect($urlfinal, 'refresh');
     }
     else if($numeroConsultas==8){
         //se envia 30
         $codigo='KILO30';
         $url='https://sntcenter.com.mx/welcome/emialPromocion?email='.$email.'&nombre='.$nombre.'&codigo='.$codigo.'&descuento=30';
+
+        $urlfinal=$url.'&op=1&idcliente='.$idCliente;
+        redirect($urlfinal, 'refresh');
     }
     else if($numeroConsultas==11){
         //se envia 40
         $codigo='ROMPE40';
         $url='https://sntcenter.com.mx/welcome/emialPromocion?email='.$email.'&nombre='.$nombre.'&codigo='.$codigo.'&descuento=40';
+
+        $urlfinal=$url.'&op=1&idcliente='.$idCliente;
+        redirect($urlfinal, 'refresh');
     }
     else if($numeroConsultas==14){
         //se envia 50
         $codigo='CORRE50';
         $url='https://sntcenter.com.mx/welcome/emialPromocion?email='.$email.'&nombre='.$nombre.'&codigo='.$codigo.'&descuento=50';
+
+        $urlfinal=$url.'&op=1&idcliente='.$idCliente;
+        redirect($urlfinal, 'refresh');
+    }else{
+
+       redirect('cliente/citas?idcliente='.$idCliente, 'refresh');
     }
 
 
 
-    redirect($url.'&op=1&idcliente='.$idCliente, 'refresh');
 
 }
 public function citas() {
@@ -107,12 +124,12 @@ public function citas() {
     $idPlancontrolado=0;
 
     if($num==0){
-       $newdata = array(
+     $newdata = array(
         'idCliente' => $idCliente,
         'idplan' => 8
     );
-       $idPlancontrolado=$this->cliente_models->insertarplancontratado($newdata);
-   }else{
+     $idPlancontrolado=$this->cliente_models->insertarplancontratado($newdata);
+ }else{
     $idPlancontrolado=$this->cliente_models->buscarplancontratado($idCliente);
 
 
