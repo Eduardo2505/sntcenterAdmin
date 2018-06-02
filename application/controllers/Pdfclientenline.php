@@ -5,7 +5,8 @@ if (!defined('BASEPATH'))
 
 class Pdfclientenline extends CI_Controller {
 
- private $urlc = 'http://localhost/sntcuestionario/';
+  //private $urlc = 'http://localhost/sntcuestionario/';
+  private $urlc ='http://snt.pvessy.com/sntcuestionario/';
 
     function __construct() {
         parent::__construct();
