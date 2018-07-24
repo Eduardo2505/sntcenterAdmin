@@ -746,15 +746,37 @@ function estilovida($rowv){
                     for($i=0;$i<$resultado;$i++){
 
                         $s1 = explode("_",$cantidadSuplementosExtra[$i]);
+                        $num_tags = count($s1);
+
+                        $val1='';
+                        $val2='';
+                        $val3='';
+                        $val4='';
+                        $val5='';
+                        if($num_tags!=0){
+                            $val1=$s1[0];
+                            if($num_tags==2){
+                                $val2=$s1[1];
+                            }
+                            if($num_tags==3){
+                                $val3=$s1[2];
+                            }
+                            if($num_tags==4){
+                                $val4=$s1[3];
+                            }
+                            if($num_tags==5){
+                                $val4=$s1[4];
+                            }
+                        }
 
                         $html.= '
 
                         <tr>
-                            <td style="border: 1px solid #ddd">'.$s1[0].'</td>
-                            <td style="border: 1px solid #ddd">'.$s1[1].'</td>
-                            <td style="border: 1px solid #ddd">'.$s1[2].'</td>
-                            <td style="border: 1px solid #ddd">'.$s1[3].'</td>
-                            <td style="border: 1px solid #ddd">'.$s1[4].'</td>
+                            <td style="border: 1px solid #ddd">'.$val1.'</td>
+                            <td style="border: 1px solid #ddd">'.$val2.'</td>
+                            <td style="border: 1px solid #ddd">'.$val3.'</td>
+                            <td style="border: 1px solid #ddd">'.$val4.'</td>
+                            <td style="border: 1px solid #ddd">'.$val5.'</td>
                        </tr>';
 
                       
